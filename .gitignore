@@ -1,1 +1,37 @@
+# Build output directories
+target-root/
+opt/
+
+# Container build artifacts
+*.tar
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+
+# Source tarballs (if stored locally)
 sources/
+src/
+
+# Build logs and temporary files
+*.log
+build-*/
+tmp/
+.tmp/
+
+# VM disk images
+*.img
+*.qcow2
+*.vmdk
+*.vdi
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Container runtime files
+.container-id

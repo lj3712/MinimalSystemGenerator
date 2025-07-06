@@ -22,7 +22,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 echo -e "${GREEN}=== MINIMAL SYSTEM GENERATOR - build-gcc ===${NC}"
-echo -e "${YELLOW}Building GCC ${GCC_VERSION} for target system${NC}"
+echo -e "${YELLOW}Building GCC ${GCC_VERSION} for x86_64 target system${NC}"
 
 # Check prerequisites
 if [ ! -f "${TARGET_ROOT}/.headers-prepared" ]; then
@@ -68,7 +68,7 @@ echo "Using container's native toolchain to build"
     --enable-shared \
     --enable-threads=posix \
     --enable-checking=release \
-    --disable-multilib \
+    --enable-multilib \
     --with-system-zlib \
     --enable-__cxa_atexit \
     --disable-libunwind-exceptions \
@@ -79,6 +79,8 @@ echo "Using container's native toolchain to build"
     --enable-initfini-array \
     --disable-libgcj \
     --disable-nls \
+    --with-tune=generic \
+    --with-arch_64=x86-64 \
     MAKEINFO=missing
 
 # Build GCC using container's toolchain
@@ -131,4 +133,4 @@ touch "${TARGET_ROOT}/.gcc-built"
 
 echo -e "${GREEN}=== build-gcc completed successfully ===${NC}"
 echo -e "${YELLOW}Next step: run build-binutils${NC}"
-echo -e "${YELLOW}Target system will have a complete GCC installation at /usr${NC}"
+echo -e "${YELLOW}Target system will have a complete x86_64 GCC installation at /usr${NC}"

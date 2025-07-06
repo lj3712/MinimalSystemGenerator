@@ -1,11 +1,11 @@
 # Minimal System Generator
 
-A collection of build scripts to create a minimal Linux system with kernel, GCC, binutils, glibc, and busybox. The resulting system is designed to run under a virtual machine (QEMU, VMware, etc.) and is capable of compiling and executing programs.
+A collection of build scripts to create a minimal x86_64 Linux system with kernel, GCC, binutils, glibc, and busybox. The resulting system is designed to run under a virtual machine (QEMU, VMware, etc.) and is capable of compiling and executing programs.
 
 ## System Specifications
 
 - **Linux kernel**: 3.0.101
-- **GCC**: 4.5.2  
+- **GCC**: 4.5.2
 - **Binutils**: 2.21
 - **Glibc**: 2.13
 - **Busybox**: 1.21.1
@@ -14,7 +14,7 @@ A collection of build scripts to create a minimal Linux system with kernel, GCC,
 
 - **Host OS**: Debian bookworm
 - **Container**: Fedora 20 (podman)
-- **Target Architecture**: i686 (32-bit x86)
+- **Target Architecture**: x86_64 (64-bit x86)
 - **Target Root**: `/opt/target-root`
 
 ## Prerequisites
@@ -23,6 +23,7 @@ A collection of build scripts to create a minimal Linux system with kernel, GCC,
 ```bash
 yum install zlib-devel
 ```
+*Note: Standard x86_64 development packages are included in base container setup*
 
 ### Source Requirements
 All source tarballs must be available and extracted in `/usr/src/`:
@@ -92,9 +93,9 @@ The scripts are designed to be run in this specific order:
 ## Known Issues & Solutions
 
 ### Texinfo Compatibility
-GCC 4.5.2 has documentation files incompatible with modern texinfo (5.0+). 
+GCC 4.5.2 has documentation files incompatible with modern texinfo (5.0+).
 
-**Solution Applied**: 
+**Solution Applied**:
 - Set `MAKEINFO=missing` in environment and configure
 - Create fake `makeinfo` script pointing to `/usr/bin/true`
 - Add fake script directory to beginning of PATH
@@ -108,7 +109,7 @@ Some packages require development headers not included in base container.
 ## Build Process Details
 
 ### Cross-Compilation vs Native Build
-This project uses **native compilation** within a trusted container environment rather than cross-compilation. The container's GCC builds target components that are installed to the target root filesystem.
+This project uses **native compilation** within the Fedora 20 container. Both the container and target system are x86_64 architecture, so the container's GCC builds target components directly without cross-compilation complexity. Components are installed to the target root filesystem with `DESTDIR`.
 
 ### Target System Self-Hosting
 The resulting minimal system includes a complete GCC installation, allowing it to compile programs for itself. This makes it truly self-contained for development purposes.
@@ -134,6 +135,10 @@ When reporting issues or contributing improvements:
 2. Include relevant error messages
 3. Note any deviations from the standard build environment
 4. Test fixes in a clean container environment
+
+## License
+
+[Add your preferred license here]
 
 ---
 

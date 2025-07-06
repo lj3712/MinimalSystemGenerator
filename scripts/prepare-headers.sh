@@ -19,7 +19,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 echo -e "${GREEN}=== MINIMAL SYSTEM GENERATOR - prepare-headers ===${NC}"
-echo -e "${YELLOW}Preparing kernel headers for Linux ${KERNEL_VERSION}${NC}"
+echo -e "${YELLOW}Preparing kernel headers for Linux ${KERNEL_VERSION} (x86_64)${NC}"
 
 # Check if kernel source directory exists
 if [ ! -d "$KERNEL_SRC_DIR" ]; then

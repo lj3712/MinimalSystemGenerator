@@ -9,6 +9,9 @@ RUN sed -i 's/mirrorlist=https:\/\/mirrors.fedoraproject.org\/.*$/#&/g' /etc/yum
 # Install build tools and deps
 RUN yum -y update && \
     yum -y install \
+	file \
+	binutils-devel \
+	elfutils \
         tar \
         gzip \
         bzip2 \

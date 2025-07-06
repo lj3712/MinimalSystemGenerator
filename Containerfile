@@ -27,14 +27,18 @@ RUN yum -y update && \
         perl \
         patch \
 	zlib-devel \ 
+	glibc-devel.i686 \
+	libgcc.i686 \ 
+	libstdc++-devel.i686 \
+	zlib-devel.i686 \ 
         which && \
     yum clean all
 
 WORKDIR /sources
 
 # Copy sources into image
-COPY *.tar.gz /sources/
-COPY *.tar.bz2 /sources/
+COPY sources/*.tar.gz /sources/
+COPY sources/*.tar.bz2 /sources/
 
 CMD ["/bin/bash"]
 

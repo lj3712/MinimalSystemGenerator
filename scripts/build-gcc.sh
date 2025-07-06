@@ -68,7 +68,7 @@ echo "Using container's native toolchain to build"
     --enable-shared \
     --enable-threads=posix \
     --enable-checking=release \
-    --enable-multilib \
+    --disable-multilib \
     --with-system-zlib \
     --enable-__cxa_atexit \
     --disable-libunwind-exceptions \
@@ -80,7 +80,7 @@ echo "Using container's native toolchain to build"
     --disable-libgcj \
     --disable-nls \
     --with-tune=generic \
-    --with-arch_64=x86-64 \
+    --with-arch=x86-64 \
     MAKEINFO=missing
 
 # Build GCC using container's toolchain

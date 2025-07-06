@@ -26,11 +26,7 @@ RUN yum -y update && \
         glibc-static \
         perl \
         patch \
-	zlib-devel \ 
-	glibc-devel.i686 \
-	libgcc.i686 \ 
-	libstdc++-devel.i686 \
-	zlib-devel.i686 \ 
+        zlib-devel \
         which && \
     yum clean all
 
